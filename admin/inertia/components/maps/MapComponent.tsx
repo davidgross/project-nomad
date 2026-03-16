@@ -15,12 +15,9 @@ export default function MapComponent() {
     }
   }, [])
 
-  let mapStyleUrl = if(window.location.port == "")
-  {
-    `${window.location.protocol}//${window.location.hostname}/api/maps/styles`
-  } else {
+  let mapStyleUrl = window.location.port == "" ?
+    `${window.location.protocol}//${window.location.hostname}/api/maps/styles` :
     `${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/maps/styles`
-  }
 
   return (
     <MapProvider>
