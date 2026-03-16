@@ -153,7 +153,7 @@ export class DockerService {
 
     // First, check if ui_location is set and is a valid port number
     if (service.ui_location && parseInt(service.ui_location, 10)) {
-      return `http://${hostname}:${service.ui_location}`
+      return `//${hostname}:${service.ui_location}`
     }
 
     // Next, try to extract a host port from container_config
@@ -168,7 +168,7 @@ export class DockerService {
       const hostPortsArray = hostPorts.flat() as { HostPort: string }[]
       const hostPortsStrings = hostPortsArray.map((binding) => binding.HostPort)
       if (hostPortsStrings.length > 0) {
-        return `http://${hostname}:${hostPortsStrings[0]}`
+        return `//${hostname}:${hostPortsStrings[0]}`
       }
     }
 
