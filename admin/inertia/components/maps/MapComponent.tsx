@@ -15,6 +15,13 @@ export default function MapComponent() {
     }
   }, [])
 
+  let mapStyleUrl = if(window.location.port == "")
+  {
+    `${window.location.protocol}//${window.location.hostname}/api/maps/styles`
+  } else {
+    `${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/maps/styles`
+  }
+
   return (
     <MapProvider>
       <Map
@@ -23,7 +30,7 @@ export default function MapComponent() {
           width: '100%',
           height: '100vh',
         }}
-        mapStyle={`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/maps/styles`}
+        mapStyle={mapStyleUrl}
         mapLib={maplibregl}
         initialViewState={{
           longitude: -101,
